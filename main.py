@@ -1,0 +1,43 @@
+from selenium import webdriver
+from webdriver_manager.chrome import ChromeDriverManager
+import time
+numberOfTabs = int(input("Number of Bots? (give me a number)"))
+browser = webdriver.Chrome(ChromeDriverManager().install())
+count = 1
+browser.maximize_window()
+while count <= numberOfTabs:
+    browser.get('https://beta.modd.io/play/two-houses')
+    time.sleep(8)
+    element = browser.find_element_by_id("server-dropdown-container")
+    element.click()
+    time.sleep(1)
+    element = browser.find_element_by_id("server-option-3")
+    element.click()
+    element = browser.find_element_by_id("play-game-button")
+    element.click()
+    browser.execute_script("window.open('about:blank', 'tab{}');".format(count))
+    browser.switch_to.window("tab{}".format(count))
+    browser.get('https://beta.modd.io/play/two-houses')
+    time.sleep(8)
+    element = browser.find_element_by_id("server-dropdown-container")
+    element.click()
+    time.sleep(1)
+    element = browser.find_element_by_id("server-option-3")
+    element.click()
+    element = browser.find_element_by_id("play-game-button")
+    element.click()
+    count = count + 1
+
+# browser.get('https://beta.modd.io/play/two-houses')
+# browser.execute_script("window.open('about:blank', 'thirdtab');")
+# browser.switch_to.window("thirdtab")
+# browser.get('https://beta.modd.io/play/two-houses')
+# browser.execute_script("window.open('about:blank', 'fourthtab');")
+# browser.switch_to.window("fourthtab")
+# browser.get('https://beta.modd.io/play/two-houses')
+# browser.execute_script("window.open('about:blank', 'fifthtab');")
+# browser.switch_to.window("fifthtab")
+# browser.get('https://beta.modd.io/play/two-houses')
+# browser.execute_script("window.open('about:blank', 'sixthtab');")
+# browser.switch_to.window("sixthtab")
+# browser.get('https://beta.modd.io/play/two-houses')
