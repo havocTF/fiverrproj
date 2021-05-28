@@ -1,0 +1,16 @@
+Step 1 : Double click on the RUN THIS FIRST.bat file
+Step 2 : Double click RUN THIS TO LAUNCH.bat file
+Step 3 : Make yourself some tea if your internet is as bad as school wifi
+Step 4 : Once it has loaded all 49 bots, it will start making them play
+Step 5 : If your internet is halfway decent and the website isn't lagging, it should all load in under 1 - 2 minutes
+
+If you want to change the server where the bot goes, open up the python script with a text editor like notepad. Go to the 
+line where it says... element = browser.find_element_by_id(
+            "server-option-2")
+It should also display a lot of comments
+Change the server-option- number to your suiting 
+Remember, the server option counts from the top of the list where the top is option 0, to the bottom of the list
+very top of server option = 0
+next one under that = 1
+next one under that = 2
+and so fourth
