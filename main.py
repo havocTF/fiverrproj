@@ -1,19 +1,18 @@
 from selenium import webdriver
-from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from webdriver_manager.chrome import ChromeDriverManager
 import time
-
-GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
-CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
+import os
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
-chrome_options.binary_location = GOOGLE_CHROME_PATH
+chrome_options.add_argument('--headless')
+chrome_options.add_argument('--disable-dev-shm-usage')
+chrome_options.binary_location = os.environ.get("GOOGLE_CHROME_BIN")
 
-browser = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=chrome_options)
+browser = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 count = 1
 
 
@@ -36,7 +35,6 @@ def wait():
     )
 
 
-browser.maximize_window()
 browser.get('https://beta.modd.io/play/two-houses')
 wait()
 changeServerAndJoin()
