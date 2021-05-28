@@ -1,43 +1,41 @@
 from selenium import webdriver
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 import time
-numberOfTabs = int(input("Number of Bots? (give me a number)"))
+
 browser = webdriver.Chrome(ChromeDriverManager().install())
 count = 1
+
+
+def changeServerAndJoin():
+    try:
+        element = browser.find_element_by_id("server-dropdown-container")
+        element.click()
+        time.sleep(1)
+        element = browser.find_element_by_id("server-option-3")
+        element.click()
+        element = browser.find_element_by_id("play-game-button")
+        element.click()
+    except:
+        changeServerAndJoin()
+
+
+def wait():
+    WebDriverWait(browser, 900).until(
+        EC.presence_of_element_located((By.ID, "server-dropdown-container"))
+    )
+
+
 browser.maximize_window()
-while count <= numberOfTabs:
-    browser.get('https://beta.modd.io/play/two-houses')
-    time.sleep(8)
-    element = browser.find_element_by_id("server-dropdown-container")
-    element.click()
-    time.sleep(1)
-    element = browser.find_element_by_id("server-option-3")
-    element.click()
-    element = browser.find_element_by_id("play-game-button")
-    element.click()
+browser.get('https://beta.modd.io/play/two-houses')
+wait()
+changeServerAndJoin()
+while True:
     browser.execute_script("window.open('about:blank', 'tab{}');".format(count))
     browser.switch_to.window("tab{}".format(count))
     browser.get('https://beta.modd.io/play/two-houses')
-    time.sleep(8)
-    element = browser.find_element_by_id("server-dropdown-container")
-    element.click()
-    time.sleep(1)
-    element = browser.find_element_by_id("server-option-3")
-    element.click()
-    element = browser.find_element_by_id("play-game-button")
-    element.click()
+    wait()
+    changeServerAndJoin()
     count = count + 1
-
-# browser.get('https://beta.modd.io/play/two-houses')
-# browser.execute_script("window.open('about:blank', 'thirdtab');")
-# browser.switch_to.window("thirdtab")
-# browser.get('https://beta.modd.io/play/two-houses')
-# browser.execute_script("window.open('about:blank', 'fourthtab');")
-# browser.switch_to.window("fourthtab")
-# browser.get('https://beta.modd.io/play/two-houses')
-# browser.execute_script("window.open('about:blank', 'fifthtab');")
-# browser.switch_to.window("fifthtab")
-# browser.get('https://beta.modd.io/play/two-houses')
-# browser.execute_script("window.open('about:blank', 'sixthtab');")
-# browser.switch_to.window("sixthtab")
-# browser.get('https://beta.modd.io/play/two-houses')
